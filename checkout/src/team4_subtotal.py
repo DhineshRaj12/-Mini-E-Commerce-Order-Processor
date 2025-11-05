@@ -1,1 +1,20 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"authorship_tag":"ABX9TyP4gYa5M4FOMLU12Chc5wSw"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"code","execution_count":1,"metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"tKyJjyOWDq27","executionInfo":{"status":"ok","timestamp":1761709505903,"user_tz":-480,"elapsed":29,"user":{"displayName":"Asyraff Halim","userId":"03311851672583636699"}},"outputId":"b4c61c68-31e8-45ad-b5e0-3591d55379c4"},"outputs":[{"output_type":"stream","name":"stdout","text":["35.00\n"]}],"source":["def calculate_subtotal(cart: dict, catalog: dict) -> float:\n","    \"\"\"\n","    - Sum price * qty for all cart items (use catalog price).\n","    - Round to 2 decimals at the end (banker's rounding not required).\n","    Example:\n","        cart = {\"P100\": 3, \"P300\": 2}\n","        catalog = {\"P100\": 10.0, \"P300\": 2.5}\n","        → subtotal = 35.00\n","    \"\"\"\n","    subtotal = 0.0\n","    for product_id, qty in cart.items():\n","        price = catalog.get(product_id, 0.0)\n","        subtotal += price * qty\n","\n","    return f\"{subtotal:.2f}\"\n","\n","cart = {\"P100\": 3, \"P300\": 2}\n","catalog = {\"P100\": 10.0, \"P300\": 2.5}\n","\n","print(calculate_subtotal(cart, catalog))  # Output: 35.00\n"]}]}
+def calculate_subtotal(cart: dict, catalog: dict) -> float:
+    """
+    - Sum price * qty for all cart items (use catalog price).
+    - Round to 2 decimals at the end (banker's rounding not required).
+    Example:
+        cart = {"P100": 3, "P300": 2}
+        catalog = {"P100": 10.0, "P300": 2.5}
+        → subtotal = 35.00
+    """
+    subtotal = 0.0
+    for product_id, qty in cart.items():
+        price = catalog.get(product_id, 0.0)
+        subtotal += price * qty
+
+    return f"{subtotal:.2f}"
+
+cart = {"P100": 3, "P300": 2}
+catalog = {"P100": 10.0, "P300": 2.5}
+
+print(calculate_subtotal(cart, catalog))  # Output: 35.00
