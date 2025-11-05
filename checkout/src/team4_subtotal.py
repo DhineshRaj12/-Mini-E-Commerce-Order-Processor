@@ -20,3 +20,12 @@ def calculate_subtotal(cart: Cart, catalog: Catalog) -> float:
         subtotal += price * qty
 
     return f"{subtotal:.2f}"
+
+ok, issues = validate_inventory(cart, stock)
+if ok:
+    subtotal = calculate_subtotal(cart, catalog)
+    print(f"Subtotal: {subtotal:.2f}")
+else:
+    print("Stock issues found:")
+    for issue in issues:
+        print("-", issue)
