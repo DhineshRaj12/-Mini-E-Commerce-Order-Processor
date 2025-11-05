@@ -1,20 +1,22 @@
-def calculate_subtotal(cart: dict, catalog: dict) -> float:
+from typing import Dict, List, Tuple, Any
+
+# --- Type Aliases ---
+CartItem = Dict[str, Any]  # individual item with 'sku' and 'qty'
+Cart = List[CartItem]      # list of CartItem
+Stock = Dict[str, int]     # e.g. {'P100': 10, 'P300': 4}
+Catalog = Dict[str, float] # e.g. {'P100': 10.0, 'P300': 2.5}
+
+# --- Subtotal Calculation ---
+def calculate_subtotal(cart: Cart, catalog: Catalog) -> float:
     """
-    - Sum price * qty for all cart items (use catalog price).
-    - Round to 2 decimals at the end (banker's rounding not required).
-    Example:
-        cart = {"P100": 3, "P300": 2}
-        catalog = {"P100": 10.0, "P300": 2.5}
-        → subtotal = 35.00
+    Calculate subtotal by summing price * qty for all cart items.
+    Round to 2 decimals at the end.
     """
     subtotal = 0.0
-    for product_id, qty in cart.items():
-        price = catalog.get(product_id, 0.0)
+    for item in cart:
+        sku = item.get('sku')
+        qty = item.get('qty', 0)
+        price = catalog.get(sku, 0.0)
         subtotal += price * qty
 
     return f"{subtotal:.2f}"
-
-cart = {"P100": 3, "P300": 2}
-catalog = {"P100": 10.0, "P300": 2.5}
-
-print(calculate_subtotal(cart, catalog))  # Output: 35.00
