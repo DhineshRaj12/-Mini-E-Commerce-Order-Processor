@@ -19,7 +19,7 @@ def generate_receipt(order: Dict[str, Any]) -> str:
     lines.append("=" * 50)
     lines.append(f"RECEIPT for Customer ID: {customer['id']} ({customer.get('tier', '')})")
     lines.append("=" * 50)
-    lines.append(f"{'SKU':<8} {'Name':<25} {'Qty':>3} {'Price':>8} {'Total':>10}")
+    lines.append(f"{'sku':<8} {'name':<25} {'qty':>3} {'price':>8} {'total':>10}")
     lines.append("-" * 50)
 
     for item in cart:
